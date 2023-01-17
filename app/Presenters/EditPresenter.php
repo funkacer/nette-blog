@@ -54,14 +54,27 @@ final class EditPresenter extends Nette\Application\UI\Presenter
         $post = $this->database
             ->table('posts')
             ->get($postId);
+            
 
         if (!$post) {
             $this->error('Post not found');
         }
 
+        //toto mi chybělo
+        $this->template->post = $post;
+
         $this->getComponent('postForm')
             ->setDefaults($post->toArray());
 
+    }
+
+    public function startup(): void
+    {
+        parent::startup();
+
+        if (!$this->getUser()->isLoggedIn()) {
+            $this->redirect('Sign:in');
+        }
     }
 
 
