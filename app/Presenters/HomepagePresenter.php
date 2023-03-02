@@ -28,11 +28,17 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
     }
     */
 
+	 /**
+     * @var \Nette\Security\User
+     */
+    public $user;
+
     private PostFacade $facade;
 
-	public function __construct(PostFacade $facade)
+	public function __construct(PostFacade $facade, \Nette\Security\User $user)
 	{
 		$this->facade = $facade;
+		$this->user = $user;
 	}
 
 	public function renderDefault(): void
@@ -40,6 +46,9 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
 		$this->template->posts = $this->facade
 			->getPublicArticles()
 			->limit(5);
+
+		$this->template->username = $this->user->getIdentity()->data["username"];
+		//$this->template->posts = $this->user->getIdentity()->data["password"];
 	}
 
 }
