@@ -47,7 +47,7 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
 			->getPublicArticles()
 			->limit(5);
 
-		$this->template->username = $this->user->getIdentity()->data["username"];
+		//$this->template->username = $this->user->getIdentity()->data["username"];
 		//$this->template->posts = $this->user->getIdentity()->data["password"];
 	}
 

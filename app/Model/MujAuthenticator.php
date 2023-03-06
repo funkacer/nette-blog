@@ -24,11 +24,16 @@ class MujAuthenticator implements \Nette\Security\IAuthenticator
             'password' => 'secret']
         ];
 
+        $signOk = false;
         foreach($users as $user) {
-            if ($userData['username'] == $user['username'] && $userData['password'] != $user['password']){
-                throw new \Nette\Security\AuthenticationException("Nasprosto nesprávné přihlášení");            
+            if ($userData['username'] == $user['username'] && $userData['password'] == $user['password']){
+                $signOk = true;            
             }
         }
+        if (!$signOk) {
+            throw new \Nette\Security\AuthenticationException("Nasprosto nesprávné přihlášení");
+        }
+        
         
         // id je vždycky 1...
         return new \Nette\Security\Identity(1, null, $userData);

@@ -14,9 +14,9 @@
 
 <a n:href="Edit:edit $post->id">Upravit příspěvek</a>
 
-<h2>Vložte nový příspěvek</h2>
+{*<h2>Vložte nový příspěvek</h2>*}
 
-{control commentForm}
+{*control commentForm*}
 
 {*
 {foreach $flashes as $flash}
@@ -31,11 +31,11 @@
 <ul>
 
 <li n:class="isModuleCurrent('Post') ? active">
-	<a n:href="Post:show $nextid">Další článek</a>
+	<a n:href="Post:show $nextid">Další příspěvek</a>
 </li>
 
 <li n:class="isModuleCurrent('Post') ? active">
-    <a n:href="Post:show $previd">Předchozí článek</a>
+    <a n:href="Post:show $previd">Předchozí příspěvek</a>
 </li>
 
 </ul>
@@ -46,11 +46,11 @@
 
 <div class="comments">
 	{foreach $comments as $comment}
-		<p><b><a href="mailto:{$comment->email}" n:tag-if="$comment->email">
-			{$comment->name}
-		</a></b> napsal:</p>
-
-		<div>{$comment->content}</div>
+			<b><a href="mailto:{$comment->email}" n:tag-if="$comment->email">
+				{$comment->name}
+			</a></b> napsal:
+			<div>{$comment->content}</div>
+			<br />
 	{/foreach}
 </div>
 
